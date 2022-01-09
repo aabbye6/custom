@@ -2,7 +2,7 @@
 USER-AGENT,com.google.ios.youtube*
 USER-AGENT,YouTube*
 HOST-SUFFIX,googlevideo.com
-HOST-SUFFIX.com
+HOST-SUFFIX,youtube.com
 HOST-SUFFIX,ytimg.com
-HOSTi.googleapis.com
+HOST,youtubei.googleapis.com
 HOST,yt3.ggpht.com

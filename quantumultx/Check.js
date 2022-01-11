@@ -1,20 +1,6 @@
 /***
 
 Thanks to & modified from 
-1. https://gist.githubusercontent.com/Hyseen/b06e911a41036ebc36acf04ddebe7b9a/raw/nf_check.js
-2. https://github.com/AtlantisGawrGura/Quantumult-X-Scripts/blob/main/media.js
-3. https://github.com/CoiaPrant/MediaUnlock_Test/blob/main/check.sh
-
-
-For Quantumult-X 598+ ONLY!!
-
-[task_local]
-
-event-interaction https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/streaming-ui-check.js, tag=流媒体-解锁查询, img-url=checkmark.seal.system, enabled=true
-
-
-
-@XIAO_KOP
 
 **/
 
@@ -22,6 +8,8 @@ const BASE_URL = 'https://www.netflix.com/title/';
 const BASE_URL_YTB = "https://www.youtube.com/premium";
 const BASE_URL_DISNEY = 'https://www.disneyplus.com';
 const FILM_ID = 81215567
+const BASE_URL_Discovery_token = "https://us1-prod-direct.discoveryplus.com/token?deviceId=d1a4a5d25212400d1e6985984604d740&realm=go&shortlived=true"
+const BASE_URL_Discovery = "https://us1-prod-direct.discoveryplus.com/users/me"
 
 const link = { "media-url": "https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/img/southpark/7.png" } 
 const policy_name = "Netflix" //填入你的 netflix 策略组名
@@ -55,12 +43,10 @@ var flags = new Map([[ "AC" , "🇦🇨" ] ,["AE","🇦🇪"], [ "AF" , "🇦�
 
 let result = {
   "title": '    📺  流媒体服务查询',
-  "YouTube": '<b>YouTube: </b>检测失败，请重试� ❗️',
+  "YouTube": '<b>YouTube: </b>检测失败，请重试 ❗️',
   "Netflix": '<b>Netflix: </b>检测失败，请重试 ❗️',
-  //"Dazn": "<b>Dazn: </b>检测失败，请重试 ❗️",
   "Disney": "<b>Disneyᐩ: </b>检测失败，请重试 ❗️",
-  //"Paramount" : "<b>Paramountᐩ: </b>检测失败，请重试 ❗️",
-  //"Discovery" : "<b>Discoveryᐩ: </b>检测失败，请重试 ❗️",
+  "Discovery" : "<b>Discoveryᐩ: </b>检测失败，请重试 ❗️",
   //"Google": "Google 定位: 检测失败，请重试"
 
 }
@@ -71,7 +57,7 @@ const message = {
 
 ;(async () => {
   testYTB()
-  let [{ region, status }] = await Promise.all([testDisneyPlus(),testNf(FILM_ID)])
+  let [{ region, status }] = await Promise.all([testDisneyPlus(),testNf(FILM_ID),testDiscovery()])
   console.log(result["Netflix"])
   console.log(`testDisneyPlus: region=${region}, status=${status}`)
   if (status==STATUS_COMING) {
@@ -88,10 +74,9 @@ const message = {
     result["Disney"] = "<b>Disneyᐩ:</b> 检测超时 🚦 "
   }
 
-  let content = "------------------------------"+"</br>"+([result["YouTube"],result["Netflix"],result["Disney"]]).join("</br></br>")
+  let content = "------------------------------"+"</br>"+([result["YouTube"],result["Netflix"],result["Disney"],result["Discovery"]]).join("</br></br>")
   content = content + "</br>------------------------------</br>"+"<font color=#CD5C5C >"+"<b>节点</b> ➟ " + $environment.params+ "</font>"
   content =`<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: thin">` + content + `</p>`
-//  cnt = `<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: thin">` +'----------------------</br></br>'+result["Disney"]+'</br></br>----------------------</br>'+$environment.params + `</p>`
 $configuration.sendMessage(message).then(resolve => {
     if (resolve.error) {
       console.log(resolve.error);
@@ -99,7 +84,7 @@ $configuration.sendMessage(message).then(resolve => {
     }
     if (resolve.ret) {
       let output=JSON.stringify(resolve.ret[message.content])? JSON.stringify(resolve.ret[message.content]).replace(/\"|\[|\]/g,"").replace(/\,/g," ➟ ") : $environment.params
-      let content = "--------------------------------------</br>"+(result["Disney"],result["Netflix"],result["YouTube"]]).join("</br></br>")
+      let content = "--------------------------------------</br>"+([result["Discovery"],result["Disney"],result["Netflix"],result["YouTube"]]).join("</br></br>")
       content = content + "</br>--------------------------------------</br>"+"<font color=#CD5C5C>"+"<b>节点</b> ➟ " + output+ "</font>"
       content =`<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: thin">` + content + `</p>`
       //$notify(typeof(output),output)
@@ -123,7 +108,7 @@ $configuration.sendMessage(message).then(resolve => {
     }
     if (resolve.ret) {
       let output=JSON.stringify(resolve.ret[message.content])? JSON.stringify(resolve.ret[message.content]).replace(/\"|\[|\]/g,"").replace(/\,/g," ➟ ") : $environment.params
-      let content = "--------------------------------------</br>"+(result["Disney"],result["Netflix"],result["YouTube"]]).join("</br></br>")
+      let content = "--------------------------------------</br>"+([result["Discovery"],result["Paramount"],result["Disney"],result["Netflix"],result["YouTube"]]).join("</br></br>")
       content = content + "</br>--------------------------------------</br>"+"<font color=#CD5C5C>"+"<b>节点</b> ➟ " + output+ "</font>"
       content =`<p style="text-align: center; font-family: -apple-system; font-size: large; font-weight: thin">` + content + `</p>`
       //$notify(typeof(output),output)
@@ -370,3 +355,58 @@ function testYTB() {
       //resolve("timeout")
     })
 }
+
+
+
+function testDiscovery() {
+  return new Promise((resolve, reject) =>{
+    let option = {
+      url: BASE_URL_Discovery_token,
+      opts: opts1,
+      timeout: 2800,
+      headers: {
+        'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36'
+      },
+      verify: false
+    }
+    $task.fetch(option).then(response=> {
+      console.log("GetToken:"+response.statusCode)
+      let data = JSON.parse(response.body)
+      let token = data["data"]["attributes"]["token"]
+      const cookievalid =`_gcl_au=1.1.858579665.1632206782; _rdt_uuid=1632206782474.6a9ad4f2-8ef7-4a49-9d60-e071bce45e88; _scid=d154b864-8b7e-4f46-90e0-8b56cff67d05; _pin_unauth=dWlkPU1qWTRNR1ZoTlRBdE1tSXdNaTAwTW1Nd0xUbGxORFV0WWpZMU0yVXdPV1l6WldFeQ; _sctr=1|1632153600000; aam_fw=aam%3D9354365%3Baam%3D9040990; aam_uuid=24382050115125439381416006538140778858; st=${token}; gi_ls=0; _uetvid=a25161a01aa711ec92d47775379d5e4d; AMCV_BC501253513148ED0A490D45%40AdobeOrg=-1124106680%7CMCIDTS%7C18894%7CMCMID%7C24223296309793747161435877577673078228%7CMCAAMLH-1633011393%7C9%7CMCAAMB-1633011393%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1632413793s%7CNONE%7CvVersion%7C5.2.0; ass=19ef15da-95d6-4b1d-8fa2-e9e099c9cc38.1632408400.1632406594`
+      let option1 = {
+        url: BASE_URL_Discovery,
+        opts: opts1,
+        timeout: 2800,
+        headers: {
+          'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36',
+          "Cookie": cookievalid,
+        },
+        ciphers: "DEFAULT@SECLEVEL=1",
+        verify: false
+      }
+      $task.fetch(option1).then(response=> {
+        console.log("Check:"+response.statusCode)
+        let data = JSON.parse(response.body)
+        let locationd = data["data"]["attributes"]["currentLocationTerritory"]
+        if (locationd == "us") {
+          result["Discovery"] = "<b>Discoveryᐩ: </b>支持 🎉 "
+          console.log("支持Discoveryᐩ")
+          resolve("支持Discoveryᐩ")
+          return
+        } else {
+          result["Discovery"] = "<b>Discoveryᐩ: </b>未支持 🚫"
+          console.log("不支持Discoveryᐩ")
+          resolve("不支持Discoveryᐩ")
+          return
+        }
+      }, reason => {
+        console.log("Check-Error"+reason)
+        resolve("discovery failed")
+      })
+    }, reason => {
+      console.log("GetToken-Error"+reason)
+      resolve("discovery failed")
+    })})}

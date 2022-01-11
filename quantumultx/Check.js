@@ -278,7 +278,7 @@ function testNf(filmId) {
       console.log("nf:"+response.statusCode)
       if (response.statusCode === 404) {
         
-        result["Netflix"] = "<b>Netflix: </b>支持自制剧集 😩"
+        result["Netflix"] = "<b>Netflix: </b>仅支持自制剧 😩"
         console.log("nf:"+result["Netflix"])
         resolve('Not Found')
         return 
@@ -298,7 +298,7 @@ function testNf(filmId) {
           region = 'us'
         }
         console.log("nf:"+region)
-        result["Netflix"] = "<b>Netflix: </b>完整支持"+arrow+ "⟦"+flags.get(region.toUpperCase())+"⟧ 🎉"
+        result["Netflix"] = "<b>Netflix: </b>完美支持"+arrow+ "⟦"+flags.get(region.toUpperCase())+"⟧ 🎉"
         //$notify("nf:"+result["Netflix"])
         resolve("nf:"+result["Netflix"])
         return 

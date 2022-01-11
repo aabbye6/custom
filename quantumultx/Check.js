@@ -278,7 +278,7 @@ function testNf(filmId) {
       console.log("nf:"+response.statusCode)
       if (response.statusCode === 404) {
         
-        result["Netflix"] = "<b>Netflix: </b>支持自制剧集 ⚠️"
+        result["Netflix"] = "<b>Netflix: </b>支持自制剧集 😩"
         console.log("nf:"+result["Netflix"])
         resolve('Not Found')
         return 

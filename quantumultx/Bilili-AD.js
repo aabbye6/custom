@@ -35,7 +35,7 @@ if (!body.hasOwnProperty('data')) {
             });
             fixPos(body.data.top);
         }
-        底部tab栏
+        //底部tab栏
         if (!body.data.hasOwnProperty('bottom')) {
             console.log("body:" + $response.body);
             $notification.post(notifiTitle, 'tab', "bottom字段错误");

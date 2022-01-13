@@ -44,7 +44,6 @@ let result = {
   "YouTube": '<b>YouTube: </b>检测失败，请重试 ❗️',
   "Netflix": '<b>Netflix: </b>检测失败，请重试 ❗️',
   "Disney": "<b>Disneyᐩ: </b>检测失败，请重试 ❗️",
-  //"Google": "Google 定位: 检测失败，请重试"
 
 }
 const message = {

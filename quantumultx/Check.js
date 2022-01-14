@@ -10,7 +10,7 @@ const BASE_URL_DISNEY = 'https://www.disneyplus.com';
 const FILM_ID = 81215567
 
 const link = { "media-url": "https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/img/southpark/7.png" } 
-const policy_name = "Netflix" //填入你的 netflix 策略组名
+const policy_name = "test" //填入你的 netflix 策略组名
 
 const arrow = " ➟ "
 

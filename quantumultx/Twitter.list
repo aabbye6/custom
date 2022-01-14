@@ -1,10 +1,18 @@
 # > Twitter
-HOST-SUFFIX,pscp.tv
+PROCESS-NAME,/Applications/Tweetbot.app/Contents/MacOS/Tweetbot
 HOST-SUFFIX,periscope.tv
+HOST-SUFFIX,pscp.tv
 HOST-SUFFIX,t.co
+HOST-SUFFIX,tellapart.com
+HOST-SUFFIX,tweetdeck.com
 HOST-SUFFIX,twimg.co
 HOST-SUFFIX,twimg.com
+HOST-SUFFIX,twimg.org
 HOST-SUFFIX,twitpic.com
 HOST-SUFFIX,twitter.com
 HOST-SUFFIX,twitter.jp
-HOST-SUFFIX,vine.co
+HOST-SUFFIX,twitterinc.com
+HOST-SUFFIX,twitteroauth.com
+HOST-SUFFIX,twitterstat.us
+HOST-SUFFIX,twtrdns.net
+HOST-SUFFIX,twttr.com

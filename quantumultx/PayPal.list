@@ -1,6 +1,6 @@
 # NAME: PayPal
 HOST,www.paypal-mktg.com,PayPal
-HOST-KEYWORD,paypalxm.siteintercept.qualtrics.com,PayPal
+HOST-KEYWORD,-paypalxm.siteintercept.qualtrics.com,PayPal
 HOST-SUFFIX,account-paypal.info,PayPal
 HOST-SUFFIX,account-paypal.net,PayPal
 HOST-SUFFIX,account-paypal.org,PayPal

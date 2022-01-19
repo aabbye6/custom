@@ -1,6 +1,6 @@
 # NAME: PayPal
-HOST,www.paypal-mktg.com,PayPal
 HOST-KEYWORD,-paypalxm.siteintercept.qualtrics.com,PayPal
+HOST-SUFFIX,paypal-mktg.com,PayPal
 HOST-SUFFIX,anfutong.cn,PayPal
 HOST-SUFFIX,anfutong.com,PayPal
 HOST-SUFFIX,anfutong.com.cn,PayPal

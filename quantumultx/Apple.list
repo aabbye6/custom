@@ -1,8 +1,8 @@
 # NAME: Apple
 # AUTHOR: blackmatrix7
 # UPDATED: 2022-01-20 15:02:54
-HOST,apps.apple.com,AppStore
-HOST,itunes.apple.com,AppStore
+HOST,apps.apple.com,Apple
+HOST,itunes.apple.com,Apple
 HOST,api.smoot.apple.cn,Apple
 HOST,apple-events.akamaized.net,Apple
 HOST,apple.comscoreresearch.com,Apple

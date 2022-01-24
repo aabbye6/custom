@@ -1,6 +1,6 @@
-HOST,adcdn.tencentmusic.com
-HOST,ad.tencentmusic.com
-HOST,adplay.tencentmusic.com
-HOST,adexpo.tencentmusic.com
-HOST,ssp.tencentmusic.com
-HOST,adstats.tencentmusic.com
+HOST-KEYWORD,adcdn.tencentmusic.com
+HOST-KEYWORD,ad.tencentmusic.com
+HOST-KEYWORD,adplay.tencentmusic.com
+HOST-KEYWORD,adexpo.tencentmusic.com
+HOST-KEYWORD,ssp.tencentmusic.com
+HOST-KEYWORD,adstats.tencentmusic.com

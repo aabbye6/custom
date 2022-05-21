@@ -1,0 +1,13 @@
+# NAME: AppleTV
+# AUTHOR: blackmatrix7
+# UPDATED: 2022-02-14 02:10:25
+
+DOMAIN,hls-amt.itunes.apple.com
+DOMAIN,hls.itunes.apple.com˙
+DOMAIN,np-edge.itunes.apple.com
+DOMAIN,play-edge.itunes.apple.com
+DOMAIN,tv.applemusic.com,AppleTV
+DOMAIN,uts-api.itunes.apple.com
+DOMAIN-SUFFIX,tv.apple.com
+USER-AGENT,AppleTV*
+USER-AGENT,com.apple.tv*

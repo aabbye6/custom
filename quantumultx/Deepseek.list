@@ -1,9 +1,9 @@
 # NAME: DeepSeek
 # UPDATED: 2025-02-01
 
-HOST-SUFFIX,deepseek.com,DeepSeek_Node
-HOST-SUFFIX,deepseek.cc,DeepSeek_Node
-HOST-SUFFIX,deepseekapi.com,DeepSeek_Node
-HOST,api.deepseek.com,DeepSeek_Node
-HOST,chat.deepseek.com,DeepSeek_Node
-HOST,deepseek.com,DeepSeek_Node
+HOST-SUFFIX,deepseek.com,DeepSeek
+HOST-SUFFIX,deepseek.cc,DeepSeek
+HOST-SUFFIX,deepseekapi.com,DeepSeek
+HOST,api.deepseek.com,DeepSeek
+HOST,chat.deepseek.com,DeepSeek
+HOST,deepseek.com,DeepSeek
